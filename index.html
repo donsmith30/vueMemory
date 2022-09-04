@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Memory</title>
+    <!-- reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <!-- local CSS -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="d-flex flex-row justify-content-center py-3">
+        <div class="turns p-3">
+          <span class="btn btn-info"
+            >Turns :
+            <span
+              class="badge"
+              :class="finish ? 'badge-success' : 'badge-light'"
+              >{{turns}}</span
+            >
+          </span>
+        </div>
+        <div class="totalTime p-3">
+          <span class="btn btn-info"
+            >Total Time :
+            <span
+              class="badge"
+              :class="finish ? 'badge-success' : 'badge-light'"
+              >{{min}} : {{sec}}</span
+            ></span
+          >
+        </div>
+        <div class="totalTime p-3">
+          <button class="btn btn-info" @click="reset" :disabled="!start">
+            Restart
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-5 mx-auto">
+          <div class="row justify-content-md-center">
+            <div
+              v-for="card in memoryCards"
+              class="col-auto mb-3 flip-container"
+              :class="{ 'flipped': card.isFlipped, 'matched' : card.isMatched }"
+              @click="flipCard(card)"
+            >
+              <div class="memorycard">
+                <div class="front border rounded shadow">
+                  <img
+                    width="100"
+                    height="150"
+                    src="https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1004&q=80"
+                  />
+                </div>
+                <div class="back rounded border">
+                  <img width="100" height="150" :src="'./img/'+card.img" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="./app.js"></script>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
